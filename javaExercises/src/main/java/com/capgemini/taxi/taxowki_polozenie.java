@@ -1,0 +1,49 @@
+package com.capgemini.taxi;
+
+import java.util.Random;
+
+public class taxowki_polozenie{  //klasa liczaca polozenie taxowek(symulacja)
+	protected final int SIZE = 1000;  //deklaracja stalej
+	protected int tab_x[] = new int[SIZE];
+	protected int tab_y[] = new int[SIZE];
+	protected double tab_odl_tax[] = new double[SIZE];
+	protected String nazwa_tax[] = new String[SIZE];
+	protected boolean zaj_tax[] = new boolean[SIZE];  // tablica zajetosci taxowek
+
+	public taxowki_polozenie(){  // konstruktor klasy taxowki
+		for(int i = 0; i < tab_odl_tax.length; i++){
+			tab_x[i] = 500;
+			tab_y[i] = 500;
+			tab_odl_tax[i] = 0;
+			nazwa_tax[i] = "Taxowka"+i;
+			zaj_tax[i] = false;
+		}
+	}
+	
+	private int losowanie(){    //podaje losowa liczbe z zakresu -100 do 100 z preferencja na 100 i -100
+		int losowa;
+		Random los = new Random();
+		losowa = los.nextInt();
+		if(losowa > 100) losowa = 100;
+		if(losowa < -100) losowa = - 100;
+		return losowa;
+	}
+	
+	protected void obliczenia(){  //oblicza odleglosci na podstawie wspolzednych - dodac interwal 1 min //protected
+		for(int i = 0; i< 1000; i++){
+			tab_x[i] += losowanie();
+			tab_y[i] += losowanie();
+			tab_odl_tax[i] = pitagoras(tab_x[i],tab_y[i]);
+			if(tab_x[i]==tab_y[i]) zaj_tax[i] = true;
+			else zaj_tax[i] = false;
+		}
+	}
+	
+	private double pitagoras(int x, int y){ // liczy z pitagorasa odleglosc taxowki
+		return Math.sqrt(x*x + y*y); 
+	}
+	
+	// METODY DOSTEPOWE
+	double[] tab_odl_tax(){ return tab_odl_tax;} // zwraca tablice odleglosci
+	String[] nazwa_tax(){ return nazwa_tax;} //zwraca tablice nazw taxowek
+}
