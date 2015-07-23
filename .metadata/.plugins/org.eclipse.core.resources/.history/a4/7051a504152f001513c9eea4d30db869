@@ -1,0 +1,65 @@
+package application;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Ignore;
+import org.junit.Test;
+
+import console.Console;
+
+public class GameTest {
+
+	@Ignore
+	public void testGoThroughtFieldsForManualCreatedBoard() { // Tu problem !!
+		List<Boolean> list = new ArrayList<Boolean>();
+		for (int i = 0; i < 9; i++) {
+			list.add(false);
+		}
+		list.remove(3);
+		list.add(3, true); // 1,7,4
+
+		list.remove(5);
+		list.add(5, true);
+
+		list.remove(4);
+		list.add(4, true);
+
+		Board board = new Board(3, 3, list);
+		Console console = new Console(3, 3, board);
+		Game game = new Game(console);
+		try {
+			game.goThroughtFields();
+		} catch (EndOfGameException exc) {
+			System.out.println(exc);
+		}
+		assertTrue(board.getBoardList().get(1).getLifeStatus()); // 3,4,5
+		assertTrue(board.getBoardList().get(7).getLifeStatus());
+		assertTrue(board.getBoardList().get(4).getLifeStatus());
+
+	}
+
+	@Test
+	public void testGoThroughtFieldsForManualCreatedBoardWithException() {
+		List<Boolean> list = new ArrayList<Boolean>();
+		for (int i = 0; i < 9; i++) {
+			list.add(false);
+		}
+		list.remove(0);
+		list.add(0, true);
+
+		Board board = new Board(3, 3, list);
+		Console console = new Console(3, 3, board);
+		Game game = new Game(console);
+		try {
+			game.goThroughtFields();
+		} catch (EndOfGameException exc) {
+			return;
+		}
+		fail("EndOfGameException shoul accure !");
+	}
+
+}

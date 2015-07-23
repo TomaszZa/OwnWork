@@ -1,0 +1,23 @@
+package application;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Board {
+	List<Field> board = new ArrayList<Field>();
+
+	void newBoard() {
+		for (int z = 0; z < console.getRules().getHight(); z++) {
+			for (int y = 0; y < columns; y++) {
+				for (int x = 0; x < rows; x++) {
+					board.add(new Field(x, y, z));
+				}
+			}
+		}
+	}
+
+	public List<Field> getBoard() {
+		return board;
+	}
+
+}

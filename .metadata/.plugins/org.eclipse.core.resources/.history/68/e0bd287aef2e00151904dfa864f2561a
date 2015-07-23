@@ -1,0 +1,44 @@
+package application;
+
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+
+import console.Console;
+
+public class GameTest {
+
+	@Test
+	public void testGoThroughtFieldsForManualCreatedBoard() {
+		List<Boolean> list = new ArrayList<Boolean>();
+		for (int i = 0; i < 9; i++) {
+			list.add(false);
+		}
+		list.remove(0);
+		list.add(0, true);
+
+		list.remove(3);
+		list.add(3, true);
+
+		list.remove(4);
+		list.add(4, true);
+
+		Board board = new Board(3, 3, list);
+		Console console = new Console(3, 3, board);
+		Game game = new Game(console);
+		try {
+			game.goThroughtFields();
+		} catch (EndOfGameException exc) {
+			System.out.println(exc);
+		}
+		assertTrue(board.getBoardList().get(0).getLifeStatus());
+		assertTrue(board.getBoardList().get(3).getLifeStatus());
+		assertTrue(board.getBoardList().get(4).getLifeStatus());
+		assertTrue(board.getBoardList().get(5).getLifeStatus());
+
+	}
+
+}

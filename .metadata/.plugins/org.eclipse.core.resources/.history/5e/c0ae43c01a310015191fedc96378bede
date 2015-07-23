@@ -1,0 +1,13 @@
+package com.capgemini.MathematicalOperations;
+
+public class ConsolePDF {
+	public void readConsole(){
+		String pdfName;
+		String textName;
+		String textToPdf;
+	System.out.println("Wprowadz nazwe pliku do konwersji na pdf: ");
+	textName = input.nextLine();
+	System.out.println("Wprowadz nazwe pliku pdf: ");
+	pdfName = input.nextLine();
+	}
+}

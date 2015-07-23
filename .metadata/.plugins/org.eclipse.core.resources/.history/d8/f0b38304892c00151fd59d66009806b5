@@ -1,0 +1,11 @@
+package application;
+
+import console.Console;
+
+public class GameOfLife {
+	public static void main(String args[]) {
+		public Console console = new Console();
+
+	}
+
+}

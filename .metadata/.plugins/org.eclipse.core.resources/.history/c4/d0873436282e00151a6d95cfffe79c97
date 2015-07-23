@@ -1,0 +1,31 @@
+package console;
+
+import java.util.List;
+import java.util.Scanner;
+
+import application.Board;
+import application.Field;
+
+public class Console {
+	private int rows = 0;
+	private int columns = 0;
+	private Board fromConsolBoard;
+    Scanner console = new Scanner(System.in);
+	public void readFromConsole() {
+		System.out.println("Add number of rows: ");
+		
+		console.nextInt();
+		fromConsolBoard = new Board(rows, columns);
+	}
+
+	public void writeOnConsole(List<Field> fieldsList) {
+		
+
+	}
+
+	public Board getBoard() {
+		return fromConsolBoard;
+	}
+	// dodac liste do konstruktora board
+	// columns i rows do board
+}

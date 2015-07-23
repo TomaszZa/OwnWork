@@ -1,0 +1,65 @@
+package console;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import application.Board;
+
+public class Console {
+	private int rows = 0;
+	private int columns = 0;
+	private Board fromConsolBoard;
+	private String buffor;
+	Scanner console = new Scanner(System.in);
+	List<Boolean> listToBoard = new ArrayList<Boolean>();
+
+	public void readFromConsole() {
+		System.out.println("Add number of rows: ");
+		buffor = console.nextLine();
+		rows = Integer.parseInt(buffor);
+		System.out.println("Add umber of columns: "); // co jak wprowadze np
+														// sdsdsds
+		buffor = console.nextLine();
+		columns = Integer.parseInt(buffor);
+
+		int character = 0;
+		do {
+			System.out.println("Choose the how to start game(m-manually,a-automaticly): ");
+			try {
+				character = System.in.read();
+			} catch (IOException exc) {
+				System.out.println("Console read error!");
+			}
+			switch (character) {
+			case 'a':
+				fromConsolBoard = new Board(rows, columns);
+				break;
+			case 'm':
+				for (int i = 0; i < rows * columns - 1; i++) {
+					System.out.println("Add true or false for field number " + i);
+					listToBoard.add(console.nextBoolean());
+				}
+				fromConsolBoard = new Board(rows, columns, listToBoard);
+				break;
+			}
+
+		} while (character != 'm' && character != 'a');
+	}
+
+	public void writeOnConsole() {
+		for (int i = 0; i < fromConsolBoard.getBoardList().size(); i++) {
+			if (fromConsolBoard.getBoardList().get(i).getLifeStatus())
+				System.out.print("1");
+			if (!(fromConsolBoard.getBoardList().get(i).getLifeStatus()))
+				System.out.print("0");
+//			if (i % fromConsolBoard.getBoardList().get(i).getCoordinates().y == 0)
+//				System.out.println();
+		}
+	}
+
+	public Board getBoard() {
+		return fromConsolBoard;
+	}
+}

@@ -1,0 +1,34 @@
+package application;
+
+public class Field {
+	private boolean lifeStatus;
+	private int numberOrList; // nie wolno
+	private int numberOfNeighbours;
+	private Coordinates coordinates = new Coordinates();
+
+	Field(int wx, int wy, int wz) {
+		coordinates.x = wx;
+		coordinates.y = wy;
+	}
+
+	public void checkNeighbours() {
+		if (numberOfNeighbours < 2 && numberOfNeighbours > 3)
+			lifeStatus = false;
+		if (numberOfNeighbours == 3)
+			lifeStatus = true;
+	}
+
+	public void putNeighbours(int neighbours) {
+		numberOfNeighbours = neighbours;
+	}
+
+	public Coordinates getCoordinates() {
+		return coordinates;
+	}
+
+	class Coordinates {
+		int x;
+		int y;
+	}
+
+}

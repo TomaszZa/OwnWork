@@ -1,0 +1,68 @@
+package application;
+
+public class Rules {
+	int rows;
+	int column;
+	int hight;
+	String dimension;
+	String dataIntroductionType;
+	int steelLife;
+	int steelLifeWithReinkarnation;
+
+	int getRows() {
+		return rows;
+	}
+
+	void putRows(int r) {
+		rows = r;
+	}
+
+	int getColumn() {
+		return column;
+	}
+
+	void putColumn(int c) {
+		column = c;
+	}
+
+	int getHight() {
+		return hight;
+	}
+
+	void putHight(int h) {
+		hight = h;
+	}
+
+	String getDimension() {
+		return dimension;
+	}
+
+	void putDimension(String d) {
+		dimension = d;
+	}
+
+	String getDataIntroductionType() {
+		return dataIntroductionType;
+	}
+
+	void putDataIntroductionType(String d) {
+		dataIntroductionType = d;
+	}
+
+	int getSteelLife() {
+		return steelLife;
+	}
+
+	void putSteelLife(int s) {
+		steelLife = s;
+	}
+
+	int getSteelLifeWithReinkarnation() {
+		return steelLifeWithReinkarnation;
+	}
+
+	void putSteelLifeWithReinkarnation(int s) {
+		steelLifeWithReinkarnation = s;
+	}
+
+}

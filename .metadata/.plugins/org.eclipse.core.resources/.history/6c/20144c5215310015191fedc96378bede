@@ -1,0 +1,21 @@
+package com.capgemini.MathematicalOperations;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.pdf.PdfWriter;
+
+public class CreatePDF {
+	public static void create() throws FileNotFoundException,DocumentException{
+	Document document = new Document();
+	
+	PdfWriter write = PdfWriter.getInstance(document, new FileOutputStream("naz.pdf"));
+	
+	}
+
+
+	
+
+}

@@ -1,0 +1,23 @@
+package application;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+
+import console.Console;
+
+public class GameTest {
+
+	@Test
+	public void testGoThroughtFieldsForManualCreatedBoard() {
+		List<Boolean> list = new ArrayList<Boolean>();
+		
+		Board board = new Board(3,3,list);
+		Console console = new Console();
+		Game game = new Game(console);
+		
+
+	}
+
+}

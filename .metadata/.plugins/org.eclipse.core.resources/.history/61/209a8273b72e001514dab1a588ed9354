@@ -1,0 +1,17 @@
+package application;
+
+import console.Console;
+
+public class GameOfLife {
+	public static void main(String args[]) {
+		Console console = new Console();
+		console.readFromConsole();
+		Game firstGame = new Game(console);
+		try {
+			firstGame.goThroughtFields();
+		} catch (EndOfGameException exc) {
+			System.out.println(exc);
+		}
+	}
+
+}

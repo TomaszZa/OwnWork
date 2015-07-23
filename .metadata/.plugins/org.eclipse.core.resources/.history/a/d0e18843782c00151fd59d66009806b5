@@ -1,0 +1,20 @@
+package application;
+
+public class Field {
+	private boolean lifeStatus;
+	private int x, y;
+	private int numberOrList;
+	private int numberOfNeighbours;
+
+	public void checkNeighbours() {
+		if (numberOfNeighbours < steelLife && numberOfNeighbours > steelLifeWithReinkarnation)
+			lifeStatus = false;
+		if (numberOfNeighbours = steelLifeWithReinkarnation)
+			lifeStatus = true;
+	}
+
+	public void putNeighbours(int neighbours) {
+		numberOfNeighbours = neighbours;
+	}
+
+}

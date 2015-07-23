@@ -1,0 +1,12 @@
+package application;
+
+public class Rules {
+	int rows;
+	int column; 
+	int hight;
+	String dimension;
+	String dataIntroductionType;
+	int steelLife; 
+	int steelLifeWithReinkarnation;
+
+}

@@ -1,0 +1,14 @@
+package application;
+
+import console.Console;
+
+public class GameOfLife {
+	public static void main(String args[]) {
+		Console console = new Console();
+		console.readFromConsole();
+		System.out.println("Console i board  " + console + " " + console.getBoard());
+		Game firstGame = new Game(console);
+		firstGame.goThroughtFields();
+	}
+
+}

@@ -1,0 +1,124 @@
+package application;
+import interfacepart.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class GameOfLife {
+	private List<Boolean> area = new ArrayList<Boolean>();
+	private List<Boolean> prevArea;
+	private List<Integer> numbersOfNeighbours;
+	private final boolean LIFE = true, DEATH = false;
+	private int rows, column;
+
+	public GameOfLife(int r, int c) {
+		rows = r;
+		column = c;
+	}
+
+	public void generateArea(int row, int col) { // przechodzi testy
+		Random lifeOrDeath = new Random(); // c=y and r=x are coordinates
+		int numberOfListElements = row * col;
+
+		for (int i = 0; i < numberOfListElements; i++) {
+			area.add(lifeOrDeath.nextBoolean());
+		}
+	}
+
+	public void goThroughtListOfFields() throws EndOfGameException {
+		int neighbours = 0;
+		prevArea = new ArrayList<Boolean>();
+		numbersOfNeighbours = new ArrayList<Integer>();
+
+		for (int i = 0; i < column; i++) {
+			for (int j = 0; j < rows; j++) {
+				neighbours = checkNumberOfNeighbours(i, j);
+				numbersOfNeighbours.add(neighbours); // add result
+			}
+		}
+		checkConditions();
+		if (checkGame())
+			throw new EndOfGameException();
+	}
+
+	public int checkNumberOfNeighbours(int x, int y) { // number on list =
+														// y+x*rows
+		int numberOfNeighbours = 0;
+		int xplus = x + 1, xminus = x - 1, yplus = y + 1, yminus = y - 1;
+
+		if (xplus == column)
+			xplus = 0; // edge conditions
+		if (xminus == -1)
+			xminus = column - 1;
+		if (yplus == rows)
+			yplus = 0;
+		if (yminus == -1)
+			yminus = rows - 1;
+
+		if (area.get(yplus + xminus * rows).booleanValue())
+			numberOfNeighbours++;
+		if (area.get(y + xminus * rows).booleanValue())
+			numberOfNeighbours++;
+		if (area.get(yminus + xminus * rows).booleanValue())
+			numberOfNeighbours++;
+		if (area.get(yplus + x * rows).booleanValue())
+			numberOfNeighbours++;
+		if (area.get(yminus + x * rows).booleanValue())
+			numberOfNeighbours++;
+		if (area.get(yplus + xplus * rows).booleanValue())
+			numberOfNeighbours++;
+		if (area.get(y + xplus * rows).booleanValue())
+			numberOfNeighbours++;
+		if (area.get(yminus + xplus * rows).booleanValue())
+			numberOfNeighbours++;
+
+		return numberOfNeighbours;
+	}
+
+	public boolean checkGame() {
+
+		boolean AllDeath = true, ChangeOnArea = false;
+
+		for (int i = 0; i < area.size(); i++) {
+			if (prevArea.get(i) != area.get(i))
+				ChangeOnArea = true;
+			if (area.get(i) == true)
+				AllDeath = false;
+		}
+		return !ChangeOnArea | AllDeath;
+	}
+
+	public void checkConditions() {
+		for (int i = 0; i < area.size(); i++) {
+			prevArea.add(area.get(i)); // copy area to prevArea
+			switch (numbersOfNeighbours.get(i)) {
+			case 0:
+			case 1:
+			case 4:
+			case 5:
+			case 6:
+			case 7:
+			case 8:
+				area.remove(i);
+				area.add(i, DEATH);
+				break;
+			case 3:
+				area.remove(i);
+				area.add(i, LIFE);
+				break;
+			case 2:
+			}
+		}
+
+	}
+
+	public List<Boolean> getArea() {
+		return area;
+	}
+
+	public void putArea(List<Boolean> list) {
+		area = list;
+	}
+
+}

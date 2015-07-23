@@ -1,0 +1,39 @@
+package application;
+
+public class Field {
+	private boolean lifeStatus;
+	private int numberOfNeighbours;
+	private Coordinates coordinates = new Coordinates();
+
+	Field(int wx, int wy) {
+		coordinates.x = wx;
+		coordinates.y = wy;
+	}
+
+	Field(int wx, int wy, boolean ls) {
+		coordinates.x = wx;
+		coordinates.y = wy;
+		lifeStatus = ls;
+	}
+
+	public void checkNeighbours() {
+		if (numberOfNeighbours < 2 && numberOfNeighbours > 3)
+			lifeStatus = false;
+		if (numberOfNeighbours == 3)
+			lifeStatus = true;
+	}
+
+	public void putNeighbours(int neighbours) {
+		numberOfNeighbours = neighbours;
+	}
+
+	public Coordinates getCoordinates() {
+		return coordinates;
+	}
+
+	private class Coordinates {
+		int x;
+		int y;
+	}
+
+}

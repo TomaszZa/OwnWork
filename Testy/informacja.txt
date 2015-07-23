@@ -1,0 +1,2 @@
+Roywiazac problem segregacji danych np. 1,1,1 to jak wybierac 1 miedzy przecinkami(bo czyta wirszami i wywala blad)
+Obsluga wyjatkow: ogarnac kiedy trzeba obslugiwac kiedy nie

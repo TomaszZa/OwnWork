@@ -1,0 +1,31 @@
+package application;
+
+public class Rules {
+	private int rows;
+	private int column;
+
+	int getRows() {
+		return rows;
+	}
+
+	void putRows(int r) {
+		rows = r;
+	}
+
+	int getColumn() {
+		return column;
+	}
+
+	void putColumn(int c) {
+		column = c;
+	}
+
+	int getHight() {
+		return hight;
+	}
+
+	void putHight(int h) {
+		hight = h;
+	}
+
+}

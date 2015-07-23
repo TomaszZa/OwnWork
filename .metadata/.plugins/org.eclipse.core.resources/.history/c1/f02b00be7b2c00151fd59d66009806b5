@@ -1,0 +1,26 @@
+package application;
+
+public class Field {
+	private boolean lifeStatus;
+	private int x, y, z;
+	private int numberOrList;
+	private int numberOfNeighbours;
+
+	Field(int wx, int wy, int wz) {
+		x = wx;
+		y = wy;
+		z = wz;
+	}
+
+	public void checkNeighbours() {
+		if (numberOfNeighbours < steelLife && numberOfNeighbours > steelLifeWithReinkarnation)
+			lifeStatus = false;
+		if (numberOfNeighbours = steelLifeWithReinkarnation)
+			lifeStatus = true;
+	}
+
+	public void putNeighbours(int neighbours) {
+		numberOfNeighbours = neighbours;
+	}
+
+}

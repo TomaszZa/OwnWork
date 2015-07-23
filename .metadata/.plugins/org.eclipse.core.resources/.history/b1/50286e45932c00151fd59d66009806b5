@@ -1,0 +1,30 @@
+package application;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class Board {
+	List<Field> board = new ArrayList<Field>();
+	int columns;
+	int rows;
+
+	void manualnewBoard() { // manualne wprowadzanie
+		
+
+	}
+	
+	void newBoard() {
+		Random lifeOrDeath = new Random();
+		for (int y = 0; y < columns; y++) {
+			for (int x = 0; x < rows; x++) {
+				board.add(new Field(x, y,lifeOrDeath.nextBoolean()));
+			}
+		}
+	}
+
+	public List<Field> getBoard() {
+		return board;
+	}
+
+}

@@ -1,0 +1,38 @@
+package com.capgemini.MathematicalOperations;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.Scanner;
+
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfWriter;
+
+public class CreatePDF {
+	public static void create() throws FileNotFoundException, DocumentException {
+		String pdfName;
+		String textName;
+		String textToPdf;
+		Scanner input = new Scanner(System.in);
+		
+		
+		
+		Document document = new Document();
+
+		PdfWriter write = PdfWriter.getInstance(document, new FileOutputStream(pdfName + ".pdf"));
+		document.open();
+		document.add(new Paragraph("Jest git"));
+		document.close();
+
+	}
+
+	public static void main(String args[]) {
+		try {
+			create();
+		} catch (FileNotFoundException | DocumentException exc) {
+			System.out.println(exc);
+		}
+	}
+
+}

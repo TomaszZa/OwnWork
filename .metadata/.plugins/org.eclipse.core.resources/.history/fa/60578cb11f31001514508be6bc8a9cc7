@@ -1,0 +1,41 @@
+package com.capgemini.MathematicalOperations;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfWriter;
+
+public class CreatePDF {
+	public static void create(String pdfName, String textName) throws FileNotFoundException, DocumentException {
+		String toPdfText;
+
+		try (BufferedReader file = new BufferedReader(new FileReader(textName + ".txt"))) {
+
+			Document document = new Document();
+
+			PdfWriter write = PdfWriter.getInstance(document, new FileOutputStream(pdfName + ".pdf"));
+			document.open();
+
+			do {
+				toPdfText = file.readLine();
+				System.out.println(toPdfText);
+				document.add(new Paragraph(toPdfText));
+			} while (toPdfText != "");
+
+			document.close();
+		} catch (IOException exc) {
+			System.out.println("File open Error!");
+		}
+	}
+
+	public static void main(String args[]) {
+		ConsolePDF.readConsole();
+	}
+
+}
