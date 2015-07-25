@@ -13,7 +13,7 @@ import console.Console;
 public class GameTest {
 
 	@Test
-	public void testGoThroughtFieldsForManualCreatedBoard() { // Tu problem !!
+	public void testGoThroughtFieldsForManualCreatedBoard() {
 		List<Boolean> list = new ArrayList<Boolean>();
 		for (int i = 0; i < 25; i++) {
 			list.add(false);
@@ -43,13 +43,43 @@ public class GameTest {
 	}
 
 	@Test
-	public void testGoThroughtFieldsForManualCreatedBoardWithException() {
+	public void testGoThroughtFieldsForManualCreatedBoardWithExceptionAllDeath() {
 		List<Boolean> list = new ArrayList<Boolean>();
 		for (int i = 0; i < 9; i++) {
 			list.add(false);
 		}
 		list.remove(0);
 		list.add(0, true);
+
+		Board board = new Board(3, 3, list);
+		Console console = new Console(3, 3);
+		Game game = new Game(board, console);
+		console.putGame(game);
+		try {
+			game.goThroughtFields();
+		} catch (EndOfGameException exc) {
+			return;
+		}
+		fail("EndOfGameException shoul accure !");
+	}
+
+	@Test
+	public void testGoThroughtFieldsForManualCreatedBoardWithExceptionTheSameBoard() {
+		List<Boolean> list = new ArrayList<Boolean>();
+		for (int i = 0; i < 9; i++) {
+			list.add(false);
+		}
+		list.remove(1);
+		list.add(1, true);
+
+		list.remove(3);
+		list.add(3, true);
+
+		list.remove(5);
+		list.add(5, true);
+
+		list.remove(7);
+		list.add(7, true);
 
 		Board board = new Board(3, 3, list);
 		Console console = new Console(3, 3);

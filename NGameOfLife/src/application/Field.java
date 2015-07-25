@@ -38,6 +38,10 @@ public class Field {
 		return lifeStatus;
 	}
 
+	public void putLifeStatus(Boolean ls) {
+		lifeStatus = ls;
+	}
+
 	public class Coordinates {
 		public int x;
 		public int y;

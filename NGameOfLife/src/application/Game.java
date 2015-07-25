@@ -1,5 +1,6 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import console.Console;
@@ -19,19 +20,24 @@ public class Game {
 
 	public void goThroughtFields() throws EndOfGameException {
 		int nNeighbours = 0;
+		List<Field> temporaryBoard = new ArrayList<Field>();
 
 		for (int i = 0; i < board.getBoardList().size(); i++) {
 			nNeighbours = checkField(i);
 			board.getBoardList().get(i).putNeighbours(nNeighbours);
+			temporaryBoard.add(new Field(0, 0, board.getBoardList().get(i).getLifeStatus()));
 		}
 		int countFalse = 0;
+		int theSameBoard = 0;
 		for (int i = 0; i < board.getBoardList().size(); i++) {
 			board.getBoardList().get(i).checkNeighbours();
 			if (!(board.getBoardList().get(i).getLifeStatus()))
 				countFalse++;
+			if (board.getBoardList().get(i).getLifeStatus() == temporaryBoard.get(i).getLifeStatus())
+				theSameBoard++;
 		}
 		console.writeOnConsole();
-		if (countFalse == board.getBoardList().size())
+		if (countFalse == board.getBoardList().size() || theSameBoard == board.getBoardList().size())
 			throw new EndOfGameException();
 	}
 
