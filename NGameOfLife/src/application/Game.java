@@ -12,6 +12,11 @@ public class Game {
 		console = c;
 	}
 
+	public Game(Board b, Console c) {
+		board = b;
+		console = c;
+	}
+
 	public void goThroughtFields() throws EndOfGameException {
 		int nNeighbours = 0;
 
@@ -26,8 +31,7 @@ public class Game {
 				countFalse++;
 		}
 		console.writeOnConsole();
-
-		if (countFalse == board.getBoardList().size() - 1)
+		if (countFalse == board.getBoardList().size())
 			throw new EndOfGameException();
 	}
 

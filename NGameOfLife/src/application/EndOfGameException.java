@@ -8,6 +8,6 @@ public class EndOfGameException extends Exception {
 
 	public String toString() {
 		return "End Of Game Accure!!";
-	}
+	} // dodac od niezmieniania sie
 
 }

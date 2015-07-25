@@ -27,8 +27,8 @@ public class Console {
 		System.out.println("Add number of rows: ");
 		buffor = console.nextLine();
 		rows = Integer.parseInt(buffor);
-		System.out.println("Add umber of columns: "); // co jak wprowadze np
-														// sdsdsds
+		System.out.println("Add umber of columns: ");
+
 		buffor = console.nextLine();
 		columns = Integer.parseInt(buffor);
 
