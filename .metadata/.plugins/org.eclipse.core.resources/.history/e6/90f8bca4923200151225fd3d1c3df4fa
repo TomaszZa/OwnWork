@@ -1,15 +1,14 @@
 package application;
 
-import java.util.List;
-
 import console.Console;
 
 public class Game {
 	Console console;
-	Board board;
+	Board board; // z konsoli
 
 	public Game(Console c) {
 		console = c;
+		board = console.getBoard();
 	}
 
 	public void goThroughtFields() throws EndOfGameException {
@@ -29,7 +28,8 @@ public class Game {
 
 		if (countFalse == board.getBoardList().size() - 1)
 			throw new EndOfGameException();
-	}
+	}sdadsa
+	
 
 	private int checkField(int i) { // tu jest blad !!
 		int x;
@@ -66,18 +66,6 @@ public class Game {
 		}
 
 		return nNeighbours;
-	}
-
-	public void createBoard(int r, int c) {
-		board = new Board(r, c);
-	}
-
-	public void createBoard(int r, int c, List<Boolean> l) {
-		board = new Board(r, c, l);
-	}
-
-	public Board getBoard() {
-		return board;
 	}
 
 }

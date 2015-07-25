@@ -69,15 +69,11 @@ public class Game {
 	}
 
 	public void createBoard(int r, int c) {
-		board = new Board(r, c);
+
 	}
 
 	public void createBoard(int r, int c, List<Boolean> l) {
-		board = new Board(r, c, l);
-	}
 
-	public Board getBoard() {
-		return board;
 	}
 
 }

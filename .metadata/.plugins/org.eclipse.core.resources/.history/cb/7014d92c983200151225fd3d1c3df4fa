@@ -75,8 +75,7 @@ public class Game {
 	public void createBoard(int r, int c, List<Boolean> l) {
 		board = new Board(r, c, l);
 	}
-
-	public Board getBoard() {
+	public Board getBoard(){
 		return board;
 	}
 

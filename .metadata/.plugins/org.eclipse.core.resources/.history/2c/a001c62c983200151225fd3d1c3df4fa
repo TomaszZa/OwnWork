@@ -76,8 +76,4 @@ public class Game {
 		board = new Board(r, c, l);
 	}
 
-	public Board getBoard() {
-		return board;
-	}
-
 }

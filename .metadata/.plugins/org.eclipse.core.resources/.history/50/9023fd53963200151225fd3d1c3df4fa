@@ -6,7 +6,7 @@ import console.Console;
 
 public class Game {
 	Console console;
-	Board board;
+	Board board; 
 
 	public Game(Console c) {
 		console = c;
@@ -67,17 +67,13 @@ public class Game {
 
 		return nNeighbours;
 	}
-
-	public void createBoard(int r, int c) {
-		board = new Board(r, c);
+	
+	public void createBoard(int r, int c){
+		
 	}
-
-	public void createBoard(int r, int c, List<Boolean> l) {
-		board = new Board(r, c, l);
-	}
-
-	public Board getBoard() {
-		return board;
+	
+    public void createBoard(int r, int c,List<Boolean> l){
+		
 	}
 
 }

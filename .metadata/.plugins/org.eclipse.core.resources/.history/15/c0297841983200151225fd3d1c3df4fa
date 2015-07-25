@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import application.Board;
 import application.Game;
 
 public class Console {
 	private int rows = 0;
 	private int columns = 0;
+	private Board fromConsolBoard;
 	private String buffor;
 	Scanner console = new Scanner(System.in);
 	List<Boolean> listToBoard = new ArrayList<Boolean>();
@@ -21,6 +23,12 @@ public class Console {
 	public Console(int r, int c) {
 		rows = r;
 		columns = c;
+	}
+
+	public Console(int r, int c, Board b) {
+		rows = r;
+		columns = c;
+		fromConsolBoard = b;
 	}
 
 	public void readFromConsole() {
@@ -60,9 +68,9 @@ public class Console {
 		System.out.println("New Board: ");
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
-				if (consoleGame.getBoard().getBoardList().get(i + j * rows).getLifeStatus())
+				if (fromConsolBoard.getBoardList().get(i + j * rows).getLifeStatus())
 					System.out.print("1");
-				if (!(consoleGame.getBoard().getBoardList().get(i + j * rows).getLifeStatus()))
+				if (!(fromConsolBoard.getBoardList().get(i + j * rows).getLifeStatus()))
 					System.out.print("0");
 
 			}

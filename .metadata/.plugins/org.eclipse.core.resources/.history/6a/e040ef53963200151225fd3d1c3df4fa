@@ -6,9 +6,8 @@ public class GameOfLife {
 	public static void main(String args[]) {
 		boolean endOfGame = false;
 		Console console = new Console();
-		Game firstGame = new Game(console);
-		console.putGame(firstGame);
 		console.readFromConsole();
+		Game firstGame = new Game(console);
 		console.writeOnConsole();
 		do {
 			try {
@@ -19,5 +18,4 @@ public class GameOfLife {
 			}
 		} while (!endOfGame);
 	}
-
 }
