@@ -53,4 +53,6 @@
 <fullyQualifiedTypeName name="java.io.BufferedReader"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="com.capgemini.MathematicalOperations.ConsolePDF"/>
+<fullyQualifiedTypeName name="java.lang.Package"/>
+<fullyQualifiedTypeName name="com.capgemini.placeToSplit.PlaceToSplit"/>
 </qualifiedTypeNameHistroy>
