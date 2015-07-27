@@ -1,68 +1,47 @@
 package com.capgemini.pokerHands;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.List;
-import java.util.ArrayList;
 
 public class Player {
-	private BufferedReader file;
-	private List<Kart> hand = new ArrayList<Kart>();
 	private int result;
 	private int drawCardSequence, drawCardSame1, drawCardSame2, drawCardHighest;
+	private Hand hand;
 
 	Player(BufferedReader f) {
 		result = 0;
-		file = f;
+		hand = new Hand(f);
 		drawCardSequence = 0;
 		drawCardSame1 = 0;
 		drawCardSame2 = 0;
 		drawCardHighest = 15;
-		try{
-			readFileCards();
-		}catch(IOException exc){
-				System.out.println("File read failure!");
-		}
 	}
 
-	private void readFileCards() throws IOException { 
-		char kindRead, suitRead;
-		
-		for (int i = 0; i < 5; i++) {
-			kindRead = (char) file.read();
-			if(kindRead == '\n') kindRead = (char) file.read(); //new read
-			suitRead = (char) file.read();
-			file.read();  //deliting space
-			hand.add(new Kart(kindRead, suitRead));
-		}
-	}
-
-	private String sequenceCards() {    
+	private String sequenceCards() {
 		int count = 0;
 		int smallest = 15;
 		boolean royal = false;
 		boolean cardFound = false;
 
-		for (int i = 0; i < hand.size(); i++) {
-			if (hand.get(i).getValue() < smallest)
-				smallest = hand.get(i).getValue();
+		for (int i = 0; i < hand.getCardsOnHand().size(); i++) {
+			if (hand.getCardsOnHand().get(i).getValue() < smallest)
+				smallest = hand.getCardsOnHand().get(i).getValue();
 		}
-		
+
 		if (smallest == 10)
 			royal = true;
 		drawCardSequence = smallest;
-		
-		for (int j = 0; j < 5; smallest++,j++) {
-			for (int i = 0; i < hand.size(); i++) {
-				if (hand.get(i).getValue() == smallest)
+
+		for (int j = 0; j < 5; smallest++, j++) {
+			for (int i = 0; i < hand.getCardsOnHand().size(); i++) {
+				if (hand.getCardsOnHand().get(i).getValue() == smallest)
 					cardFound = true;
 			}
-			if(cardFound){
+			if (cardFound) {
 				count++;
 				cardFound = false;
 			}
 		}
-		
+
 		if (count == 5 && royal)
 			return "CardsInOrderWithRoyal";
 		if (count == 5)
@@ -74,14 +53,14 @@ public class Player {
 		int count = 0;
 		boolean cardsAtTheSameColour = false;
 		char[] cardsuit = { 'H', 'S', 'D', 'C' };
-		
+
 		for (int i = 0; i < cardsuit.length; i++) {
-			for (int j = 0; j < hand.size(); j++) {
-				if (cardsuit[i] == hand.get(j).getSuit())
+			for (int j = 0; j < hand.getCardsOnHand().size(); j++) {
+				if (cardsuit[i] == hand.getCardsOnHand().get(j).getSuit())
 					count++;
 			}
-			
-			if (count == 5){
+
+			if (count == 5) {
 				cardsAtTheSameColour = true;
 				break;
 			}
@@ -93,21 +72,21 @@ public class Player {
 	private void highestCards() {
 		int highest = 0;
 
-		
-		for (int i = 0; i < hand.size(); i++) {
-			
-			if (hand.get(i).getValue() < drawCardHighest && hand.get(i).getValue() > highest)
-				highest = hand.get(i).getValue();
+		for (int i = 0; i < hand.getCardsOnHand().size(); i++) {
+
+			if (hand.getCardsOnHand().get(i).getValue() < drawCardHighest
+					&& hand.getCardsOnHand().get(i).getValue() > highest)
+				highest = hand.getCardsOnHand().get(i).getValue();
 		}
-		
+
 		drawCardHighest = highest;
 	}
 
 	public void HighestRoll() {
-		
+
 		result += drawCardHighest;
 		highestCards();
-		
+
 	}
 
 	private String sameCards() {
@@ -115,16 +94,22 @@ public class Player {
 		int card;
 		String sameResult = "NoTheSameCards";
 
-		for (int j = 0; j < hand.size(); j++) {
-			card = hand.get(j).getValue();
-			for (int i = 0; i < hand.size(); i++) {
-				if (card == hand.get(i).getValue())
+		for (int j = 0; j < hand.getCardsOnHand().size(); j++) {
+			card = hand.getCardsOnHand().get(j).getValue();
+			for (int i = 0; i < hand.getCardsOnHand().size(); i++) {
+				if (card == hand.getCardsOnHand().get(i).getValue())
 					count++;
 			}
 
-			if (count >= numberOfCards && drawCardSame1 != card) { //DrawCardSame1 != card - protect 
-				                                                    //from counting the same card twice
-				secondNumberOfCards = numberOfCards;   
+			if (count >= numberOfCards && drawCardSame1 != card) { // DrawCardSame1
+																	// != card -
+																	// protect
+																	// from
+																	// counting
+																	// the same
+																	// card
+																	// twice
+				secondNumberOfCards = numberOfCards;
 				numberOfCards = count;
 				drawCardSame2 = drawCardSame1;
 				drawCardSame1 = card;
@@ -156,21 +141,22 @@ public class Player {
 				break;
 			case 3:
 				sameResult = "ThreeAndTwoSameCards";
-				
+
 			}
 			break;
 		}
 		return sameResult;
 	}
 
-	public void sequenceCalculating() {    //pomysl Krzyska Granatowskiego z enumami
-	    Figura figura;
-	    
+	public void sequenceCalculating() { // pomysl Krzyska Granatowskiego z
+										// enumami
+		Figura figura;
+
 		highestCards();
 
 		figura = Figura.parseByValues(colorCards(), sequenceCards(), sameCards());
-		
-		switch (figura) {   //for second line from file figura is equal null !
+
+		switch (figura) { // for second line from file figura is equal null !
 		case ROYALFLUSH:
 			result = 450 + drawCardSequence;
 			break;
