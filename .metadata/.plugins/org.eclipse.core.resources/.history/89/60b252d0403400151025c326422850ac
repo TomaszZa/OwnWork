@@ -1,0 +1,5 @@
+package com.capgemini.taxi;
+
+public class Taxi {
+
+}

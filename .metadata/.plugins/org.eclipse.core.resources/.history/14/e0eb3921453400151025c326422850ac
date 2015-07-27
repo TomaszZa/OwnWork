@@ -1,0 +1,40 @@
+package com.capgemini.taxi;
+
+import java.io.PrintWriter;
+import java.util.Date;
+
+public class Console {
+	private final int SIZE_NEW = 5;
+	private City city = new City();
+
+	private void wyswietl_tax() { // ? ma wywolywac obliczenia() a potem
+		// wybor_tax() i wyswietlac tablice 5
+		// elementow
+		PrintWriter konsola = new PrintWriter(System.out, true); // inicjalizacja
+		// strumienia
+		// znakowego
+		// o nazwie
+		// konsola
+		Date data = new Date();
+		city.obliczenia();
+		city.check_taxi();
+		konsola.println("Dostepne taxowki w promieniu 1 km( do 5 rekordow): ");
+		konsola.println("Data i godzina(odswiezanie co 1 min): " + data.toString());
+		for (int i = 0; i < SIZE_NEW; i++) {
+			konsola.println("Taxowka: " + city.getNazwaTaxWs()[i] + " Odleglosc: " + city.getOdlTaxWs()[i] + " m.");
+		}
+	}
+
+	public void repeatTaxi() {
+		for (;;) {
+			wyswietl_tax(); // wyswietlanie informacji o taxowkach
+			try { // *
+				Thread.sleep(60000); // 60000 ms = 1min (podajemy w ms)
+			} catch (InterruptedException exc) { // Opoznienie okolo 1 min
+				System.out.println("Blad opoznienia."); // *
+			}
+
+		}
+	}
+
+}

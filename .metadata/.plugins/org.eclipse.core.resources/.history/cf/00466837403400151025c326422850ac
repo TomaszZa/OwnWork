@@ -1,0 +1,14 @@
+package com.capgemini.taxi;
+
+// polozenie uzytkownika oraz taxowek jest opisane we wspolzednych x-y
+// program jest odswierzany co minute(zmienia sie polozenie symulowanych taxowek)
+// wyswietla po 5 taxowek
+
+class taxi_main {
+	Console console = new Console();
+	public static void main(String args[]) {
+		console.
+
+	}
+
+}

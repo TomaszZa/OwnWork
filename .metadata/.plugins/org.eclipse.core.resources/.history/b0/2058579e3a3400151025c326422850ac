@@ -1,0 +1,25 @@
+package com.capgemini.taxi;
+
+import java.io.PrintWriter;
+import java.util.Date;
+
+public class Console {
+	public void wyswietl_tax() { // ? ma wywolywac obliczenia() a potem
+		// wybor_tax() i wyswietlac tablice 5
+		// elementow
+		PrintWriter konsola = new PrintWriter(System.out, true); // inicjalizacja
+		// strumienia
+		// znakowego
+		// o nazwie
+		// konsola
+		Date data = new Date();
+		obliczenia();
+		wybor_tax();
+		konsola.println("Dostepne taxowki w promieniu 1 km( do 5 rekordow): ");
+		konsola.println("Data i godzina(odswiezanie co 1 min): " + data.toString());
+		for (int i = 0; i < SIZE_NEW; i++) {
+			konsola.println("Taxowka: " + nazwa_tax_ws[i] + " Odleglosc: " + tab_odl_tax_ws[i] + " m.");
+		}
+	}
+
+}
